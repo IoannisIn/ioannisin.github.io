@@ -9,4 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Read More functionality will be added soon!');
         });
     });
+
+    var contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+    }
 });
