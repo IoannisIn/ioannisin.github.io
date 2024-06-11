@@ -55,7 +55,7 @@ main {
     margin-bottom: 20px;
 }
 
-.post h2 {
+.post h2, .post h4 {
     color: #333;
 }
 
