@@ -6,35 +6,27 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   
-  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <!-- Cache Busting Link για άμεση ανανέωση -->
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=2.0' | relative_url }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   
-  <!-- UI Icons Layer -->
+  <!-- Icons (Async Loading για Lighthouse Performance) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" media="print" onload="this.media='all'">
 
-  <!-- SEO Graph Matrix -->
+  <!-- OpenGraph / Metadata Matrix -->
   <meta property="og:title" content="{{ page.title | default: site.title }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "headline": "{{ site.title }}",
-    "url": "{{ site.url }}"
-  }
-  </script>
 </head>
 <body>
 
   <nav class="navbar">
-    <div class="logo"><a href="{{ '/' | relative_url }}">&gt;_ ioannis_igi</a></div>
-    <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle Menu">
+    <div class="brand"><a href="{{ '/' | relative_url }}">&gt;_ ioannis<span>.igi</span></a></div>
+    <button class="menu-btn" id="burger-menu-trigger" aria-label="Toggle Menu">
       <i class="fas fa-bars"></i>
     </button>
-    <ul class="nav-links" id="navbar-menu">
+    <ul class="nav-links" id="main-nav-drawer">
       <li><a href="{{ '/' | relative_url }}">Home</a></li>
       <li><a href="{{ '/about.html' | relative_url }}">About</a></li>
       <li><a href="{{ '/projects.html' | relative_url }}">Projects</a></li>
@@ -42,20 +34,20 @@
     </ul>
   </nav>
 
-  <div class="main-wrapper">
-    <!-- Main Content Stream (Left Side) -->
+  <div class="main-container">
+    <!-- Main Left Column -->
     <main>
       {{ content }}
     </main>
 
-    <!-- Refined Engineering Sidebar (Right Side) -->
-    <aside class="sidebar-layout">
-      <!-- Profile Info -->
-      <div class="sidebar-widget">
-        <h3>Author</h3>
-        <div style="font-weight: 700; font-size: 1.1rem;">Ioannis IGI</div>
-        <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Systems Architect & Academic Supervisor</div>
-        <div class="social-icons">
+    <!-- Engineering Sidebar Right -->
+    <aside class="sidebar-wrapper">
+      <!-- Author Identity Widget -->
+      <div class="widget-box">
+        <h3>Identity</h3>
+        <div style="font-weight: 700; font-size: 1.1rem; color: var(--text-primary);">Ioannis IGI</div>
+        <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem;">Systems Architect & Academic Supervisor</div>
+        <div class="social-flex">
           <a href="https://github.com/IoannisIn" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
           <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
           <a href="#" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
@@ -64,18 +56,18 @@
         </div>
       </div>
 
-      <!-- Search Widget Execution -->
-      <div class="sidebar-widget">
-        <h3>Search Publications</h3>
-        <input type="text" id="tech-search" class="search-input" placeholder="Search keywords, logs, specs..." aria-label="Search posts">
-        <div id="search-output-box" style="margin-top: 1rem; max-height: 250px; overflow-y: auto;"></div>
+      <!-- Live Search Core -->
+      <div class="widget-box">
+        <h3>Search Logs</h3>
+        <input type="text" id="sidebar-search-trigger" class="search-bar-input" placeholder="Search code, specs, hardware..." aria-label="Search posts">
+        <div id="search-results-panel" style="margin-top: 1rem; max-height: 280px; overflow-y: auto;"></div>
       </div>
 
-      <!-- Archive Group Index -->
-      <div class="sidebar-widget">
+      <!-- Month/Year Archive -->
+      <div class="widget-box">
         <h3>Chronological Archive</h3>
-        <ul class="archive-ul" id="dynamic-archive-list">
-          <!-- Populated instantly from posts.json -->
+        <ul class="archive-ui" id="sidebar-dynamic-archive">
+          <!-- Populated dynamically via main.js -->
         </ul>
       </div>
     </aside>
