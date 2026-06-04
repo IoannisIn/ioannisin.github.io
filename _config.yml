@@ -11,3 +11,4 @@ plugins:
 # Liquid Processor Settings
 sass:
   style: compressed
+  
