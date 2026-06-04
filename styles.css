@@ -1,53 +1,57 @@
-/* Εισαγωγή Μοντέρνας Γραμματοσειράς */
+/* Εισαγωγή Μοντέρνας Γραμματοσειράς Inter */
 @import url('https://googleapis.com');
 
 /* Αρχικά Χρώματα (Light Mode) */
 :root {
-    --primary: #0f172a; 
-    --accent: #2563eb;  
-    --bg: #f8fafc;      
-    --card-bg: #ffffff; 
-    --text: #334155;    
-    --border: #e2e8f0;
-    --meta: #94a3b8;
+    --bg: #f8fafc;         /* Απαλό γκρι φόντο */
+    --card-bg: #ffffff;    /* Καθαρό λευκό για τις κάρτες */
+    --primary: #0f172a;    /* Σκούρο slate για τους τίτλους */
+    --text: #334155;       /* Ξεκούραστο γκρι-μαύρο για το κείμενο */
+    --accent: #2563eb;     /* Μοντέρνο Royal Μπλε για τα links */
+    --border: #e2e8f0;     /* Διακριτικές γραμμές */
+    --meta: #64748b;       /* Χρώμα για ημερομηνίες */
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
 }
 
 /* Χρώματα για το Dark Mode */
 html.dark {
-    --primary: #f8fafc; 
-    --accent: #60a5fa;  
-    --bg: #0f172a;      
-    --card-bg: #1e293b; 
-    --text: #cbd5e1;    
-    --border: #334155;
+    --bg: #0b0f19;         /* Πολύ σκούρο navy/μαύρο φόντο */
+    --card-bg: #151f32;    /* Σκούρο μπλε/γκρι για τις κάρτες */
+    --primary: #f8fafc;    /* Λευκό για τους τίτλους */
+    --text: #94a3b8;       /* Απαλό γκρι για το κείμενο */
+    --accent: #3b82f6;     /* Φωτεινό μπλε για τα links */
+    --border: #223147;     /* Σκούρες διακριτικές γραμμές */
     --meta: #64748b;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2);
 }
 
+/* Βασικό Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg);
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1050px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 20px;
 }
 
-/* Header & Navigation */
+/* Header & Μενού */
 header {
     background: var(--card-bg);
     border-bottom: 1px solid var(--border);
-    padding: 20px 0;
+    padding: 16px 0;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -60,7 +64,7 @@ header .container {
 }
 
 header h1 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--primary);
     letter-spacing: -0.5px;
@@ -69,7 +73,7 @@ header h1 {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 24px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -84,47 +88,55 @@ nav a:hover {
     color: var(--accent);
 }
 
-/* Main Layout */
+/* Διάταξη Δύο Στηλών (Main & Sidebar) */
 main {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    margin: 48px auto;
+    gap: 32px;
+    margin: 40px auto;
 }
 
+/* Responsive για Κινητά */
 @media (max-width: 768px) {
     main {
         grid-template-columns: 1fr;
+        margin: 24px auto;
     }
 }
 
 .main-content h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     letter-spacing: -0.5px;
 }
 
 /* Κάρτες Άρθρων (Blog Posts) */
 .blog-post {
     background: var(--card-bg);
-    padding: 32px;
+    padding: 28px;
     border-radius: 12px;
     border: 1px solid var(--border);
-    margin-bottom: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
 }
 
 .blog-post:hover {
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08);
+}
+
+.blog-post h3 {
+    margin-bottom: 6px;
 }
 
 .blog-post h3 a {
     color: var(--primary);
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 600;
+    letter-spacing: -0.3px;
 }
 
 .blog-post h3 a:hover {
@@ -134,11 +146,12 @@ main {
 .post-meta {
     font-size: 0.85rem;
     color: var(--meta);
-    margin: 8px 0 16px 0;
+    margin-bottom: 12px;
     font-weight: 500;
 }
 
 .blog-post p {
+    font-size: 0.95rem;
     color: var(--text);
     margin-bottom: 16px;
 }
@@ -148,7 +161,7 @@ main {
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .read-more:hover {
@@ -158,23 +171,26 @@ main {
 /* Sidebar */
 .sidebar {
     background: var(--card-bg);
-    padding: 32px;
+    padding: 24px;
     border-radius: 12px;
     height: fit-content;
     border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .sidebar h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--primary);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .sidebar p {
-    font-size: 0.95rem;
-    margin-bottom: 24px;
-    color: var(--meta);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    color: var(--text);
 }
 
 .sidebar ul {
@@ -182,13 +198,21 @@ main {
 }
 
 .sidebar ul li {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.sidebar ul li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .sidebar ul li a {
     text-decoration: none;
     color: var(--text);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .sidebar ul li a:hover {
@@ -198,9 +222,20 @@ main {
 /* Footer */
 footer {
     text-align: center;
-    padding: 40px 0;
+    padding: 32px 0;
     color: var(--meta);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     border-top: 1px solid var(--border);
     background: var(--card-bg);
+    margin-top: 64px;
+}
+
+/* Στυλ για το Κουμπί Dark Mode */
+#theme-toggle {
+    background: var(--bg) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px;
+    padding: 6px 10px !important;
+    font-size: 1rem !important;
+    box-shadow: var(--shadow);
 }
