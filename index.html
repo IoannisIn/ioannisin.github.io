@@ -3,49 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - My Blogspot</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>IoannisIn | Personal Blog</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>My Blogspot</h1>
+            <h1>Welcome to My Blogspot</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <main>
-        <div class="container">
-            <section>
-                <h2>Welcome to My Blogspot</h2>
-                <p>Hello and welcome to my blog! Here, you will find a collection of my thoughts, experiences, and various musings on life. Whether it's travel, technology, or just everyday adventures, you'll find a little bit of everything here.</p>
-                <p>Feel free to explore the latest blog posts, learn more about me, or get in touch through the contact page. I'm excited to share my journey with you and hope you find something here that resonates with you.</p>
-                <h3>Latest Blog Posts</h3>
-                    ### Latest Blog Posts
-                    
-                    <ul>
-                      {% for post in site.posts %}
-                        <li>
-                          <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
-                          <p>Posted on {{ post.date | date: "%B %d, %Y" }} by {{ post.author }}</p>
-                          <p>{{ post.content | strip_html | truncatewords: 20 }}</p>
-                        </li>
-                      {% endfor %}
-                    </ul>
-            </section>
-        </div>
+
+    <main class="container">
+        <section class="main-content">
+            <h2>Latest Blog Posts</h2>
+            
+            <!-- Εδώ εμφανίζονται αυτόματα τα άρθρα σου -->
+            {% for post in site.posts %}
+            <article class="blog-post" style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                <h3><a href="{{ post.url | relative_url }}" style="color: #003366; text-decoration: none;">{{ post.title }}</a></h3>
+                <p class="post-meta" style="color: #777; font-size: 0.9em;">Posted on {{ post.date | date: "%B %d, %Y" }} by Ioannis</p>
+                <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+                <a href="{{ post.url | relative_url }}" class="read-more" style="color: #003366; font-weight: bold; text-decoration: none;">Read More →</a>
+            </article>
+            {% else %}
+            <p>Δεν υπάρχουν ακόμα άρθρα. Ξεκινήστε γράφοντας το πρώτο σας post στον φάκελο _posts!</p>
+            {% endfor %}
+
+        </section>
+
+        <aside class="sidebar">
+            <h3>About Me</h3>
+            <p>Hello! I'm Ioannis. Welcome to my personal space where I share my thoughts, experiences, and projects.</p>
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">Technology</a></li>
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Life</a></li>
+            </ul>
+        </aside>
     </main>
+
     <footer>
         <div class="container">
-            <p>&copy; 2024 My Blogspot. All rights reserved.</p>
+            <p>&copy; 2026 IoannisIn. All rights reserved.</p>
         </div>
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>
