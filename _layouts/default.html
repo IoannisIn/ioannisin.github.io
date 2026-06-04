@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | IoannisIn</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="{{ '/' | relative_url }}" style="color: var(--primary); text-decoration: none;">IoannisIn</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><button id="theme-toggle" aria-label="Toggle Dark Mode"></button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="grid-template-columns: 1fr; max-width: 800px;">
+        <article class="blog-post" style="box-shadow: none; border: none; background: transparent; padding: 0;">
+            <span class="category-badge">{{ page.category }}</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 8px;">{{ page.title }}</h2>
+            <div class="post-meta" style="margin-bottom: 24px;">Published on {{ page.date | date: "%B %d, %Y" }}</div>
+            
+            <div class="post-entry-content" style="font-size: 1.1rem; color: var(--text);">
+                {{ content }}
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IoannisIn. Built with Jekyll.</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.innerHTML = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+        toggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerHTML = '🌙';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerHTML = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>
