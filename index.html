@@ -6,10 +6,9 @@ layout: null
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IoannisIn | Personal Blog</title>
+    <title>IoannisIn | Drone & Tech Blog</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // Έλεγχος αν ο χρήστης είχε επιλέξει Dark Mode στο παρελθόν
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -27,7 +26,7 @@ layout: null
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                     <li>
-                        <button id="theme-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 0 5px;"></button>
+                        <button id="theme-toggle" aria-label="Toggle Dark Mode"></button>
                     </li>
                 </ul>
             </nav>
@@ -36,28 +35,38 @@ layout: null
 
     <main class="container">
         <section class="main-content">
-            <h2>Latest Stories</h2>
+            <h2>Latest Projects & Flights</h2>
             
+            <div class="blog-grid">
             {% for post in site.posts %}
             <article class="blog-post">
-                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                <div class="post-meta">Published on {{ post.date | date: "%B %d, %Y" }}</div>
-                <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-                <a href="{{ post.url | relative_url }}" class="read-more">Read Entry →</a>
+                {% if post.image %}
+                <div class="post-image-wrapper">
+                    <img src="{{ post.image }}" alt="{{ post.title }}" class="post-preview-image">
+                </div>
+                {% endif %}
+                <div class="post-content-inside">
+                    <span class="category-badge">{{ post.category }}</span>
+                    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                    <div class="post-meta">Published on {{ post.date | date: "%B %d, %Y" }}</div>
+                    <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                    <a href="{{ post.url | relative_url }}" class="read-more">Read Project →</a>
+                </div>
             </article>
             {% else %}
             <p>Δεν υπάρχουν ακόμα άρθρα στον φάκελο _posts.</p>
             {% endfor %}
+            </div>
         </section>
 
         <aside class="sidebar">
             <h3>About Me</h3>
-            <p>Hello! I'm Ioannis. Welcome to my personal space where I share my thoughts, experiences, and projects.</p>
+            <p>Welcome! I'm Ioannis. Here I share my custom electronic builds and stunning drone cinematography flights.</p>
             <h3>Categories</h3>
             <ul>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Travel</a></li>
-                <li><a href="#">Life</a></li>
+                <li><a href="#">🛸 Drone Flights</a></li>
+                <li><a href="#">🛠️ Electronics</a></li>
+                <li><a href="#">💻 Programming</a></li>
             </ul>
         </aside>
     </main>
@@ -70,8 +79,6 @@ layout: null
 
     <script>
         const toggleBtn = document.getElementById('theme-toggle');
-        
-        // Ορισμός κατάλληλου emoji στο κουμπί κατά το φόρτωμα
         toggleBtn.innerHTML = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
 
         toggleBtn.addEventListener('click', () => {
