@@ -1,42 +1,41 @@
-/* styles.css */
+/* Εισαγωγή Μοντέρνας Γραμματοσειράς */
+@import url('https://googleapis.com');
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+:root {
+    --primary: #0f172a; /* Σκούρο Slate */
+    --accent: #2563eb;  /* Έντονο Μπλε */
+    --bg: #f8fafc;      /* Απαλό Γκρι Φόντο */
+    --card-bg: #ffffff; /* Λευκό για τις κάρτες */
+    --text: #334155;    /* Γκρι-Μαύρο για ξεκούραστο διάβασμα */
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
 }
 
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
+/* Header & Navigation */
 header {
-    background: #333;
-    color: #fff;
-    padding-top: 30px;
-    min-height: 70px;
-    border-bottom: #77aaff 3px solid;
-}
-
-header a {
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-}
-
-header ul {
-    padding: 0;
-    list-style: none;
-}
-
-header ul li {
-    display: inline;
-    margin-right: 10px;
+    background: var(--card-bg);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 header .container {
@@ -45,78 +44,151 @@ header .container {
     align-items: center;
 }
 
+header h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* Main Layout */
 main {
-    padding: 20px;
-    background: #fff;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin: 48px auto;
 }
 
-.post {
-    margin-bottom: 20px;
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
 }
 
-.post h2, .post h4 {
-    color: #333;
+.main-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
 }
 
-.post .date, .post .author {
-    color: #777;
+/* Κάρτες Άρθρων (Blog Posts) */
+.blog-post {
+    background: var(--card-bg);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.02);
+    margin-bottom: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.blog-post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+}
+
+.blog-post h3 a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.blog-post h3 a:hover {
+    color: var(--accent);
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin: 8px 0 16px 0;
+    font-weight: 500;
+}
+
+.blog-post p {
+    color: var(--text);
+    margin-bottom: 16px;
 }
 
 .read-more {
     display: inline-block;
+    color: var(--accent);
     text-decoration: none;
-    color: #fff;
-    background: #77aaff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
 .read-more:hover {
-    background: #5599dd;
+    text-decoration: underline;
 }
 
+/* Sidebar */
+.sidebar {
+    background: var(--card-bg);
+    padding: 32px;
+    border-radius: 12px;
+    height: fit-content;
+    border: 1px solid #e2e8f0;
+}
+
+.sidebar h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.sidebar p {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    color: #64748b;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 12px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.sidebar ul li a:hover {
+    color: var(--accent);
+}
+
+/* Footer */
 footer {
-    background: #333;
-    color: #fff;
     text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-footer p {
-    margin: 0;
-}
-
-/* Contact form styling */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form label {
-    margin: 10px 0 5px;
-}
-
-form input, form textarea {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-form button {
-    padding: 10px 20px;
-    background: #77aaff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-form button:hover {
-    background: #5599dd;
+    padding: 40px 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    border-top: 1px solid #e2e8f0;
+    background: var(--card-bg);
 }
