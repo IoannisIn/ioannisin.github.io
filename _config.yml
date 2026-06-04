@@ -1,4 +1,8 @@
-title: My Blogspot
-description: Καλωσήρθατε στο προσωπικό μου blog!
-url: "https://ioannisin.github.io"
-theme: minima
+title: IoannisIn Blog
+description: Το προσωπικό μου blog στο GitHub Pages.
+url: "https://github.io"
+baseurl: ""
+
+# Ρυθμίσεις για τα άρθρα
+markdown: kramdown
+permalink: /:title/
