@@ -3,12 +3,7 @@ description: Systems Architect & Academic Supervisor Portfolio Blog
 url: "https://ioannisin.github.io"
 baseurl: ""
 
-# Tech Optimizations
+# Plugins για SEO και Sitemap
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
-
-# Liquid Processor Settings
-sass:
-  style: compressed
-  
