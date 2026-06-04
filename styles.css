@@ -1,32 +1,35 @@
 @import url('https://googleapis.com');
 
 :root {
-    --bg: #f8fafc;         
+    --bg: #f1f5f9;         
     --card-bg: #ffffff;    
     --primary: #0f172a;    
-    --text: #334155;       
-    --accent: #0284c7;     /* Sky blue για tech ύφος */
+    --text: #475569;       
+    --accent: #2563eb;     
+    --accent-hover: #1d4ed8;
     --border: #e2e8f0;     
-    --meta: #64748b;       
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    --meta: #94a3b8;
+    --radius: 16px;
+    --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
 }
 
 html.dark {
-    --bg: #0f172a;         
-    --card-bg: #1e293b;    
+    --bg: #090d16;         
+    --card-bg: #111827;    
     --primary: #f8fafc;    
-    --text: #cbd5e1;    
-    --accent: #38bdf8;     
-    --border: #334155;     
-    --meta: #64748b;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    --text: #94a3b8;       
+    --accent: #3b82f6;     
+    --accent-hover: #60a5fa;
+    --border: #1f2937;     
+    --meta: #4b5563;
+    --shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 body {
@@ -34,21 +37,29 @@ body {
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
+/* Header Εφέ "Γυαλιού" (Blur) */
 header {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     padding: 16px 0;
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+html.dark header {
+    background: rgba(17, 24, 39, 0.8);
 }
 
 header .container {
@@ -58,16 +69,16 @@ header .container {
 }
 
 header h1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary);
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
 }
 
 nav ul {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 24px;
     align-items: center;
 }
 
@@ -75,36 +86,56 @@ nav a {
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
+    font-size: 0.95rem;
 }
 
 nav a:hover {
     color: var(--accent);
 }
 
+/* Μοντέρνο Κουμπί Switch */
 #theme-toggle {
-    background: var(--bg);
+    background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 12px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    box-shadow: var(--shadow);
+    font-size: 1.1rem;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.05);
 }
 
 main {
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 32px;
-    margin: 40px auto;
+    grid-template-columns: 2.8fr 1.2fr;
+    gap: 40px;
+    margin: 48px auto;
 }
 
-@media (max-width: 900px) {
-    main { grid-template-columns: 1fr; }
+@media (max-width: 968px) {
+    main { grid-template-columns: 1fr; margin: 32px auto; }
 }
 
-/* Πλέγμα Άρθρων */
+.main-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+}
+
+/* Premium Grid Καρτών */
 .blog-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 32px;
 }
 
 @media (max-width: 640px) {
@@ -113,34 +144,41 @@ main {
 
 .blog-post {
     background: var(--card-bg);
-    border-radius: 12px;
+    border-radius: var(--radius);
     border: 1px solid var(--border);
     box-shadow: var(--shadow);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+}
+
+.blog-post:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .post-image-wrapper {
     width: 100%;
-    height: 200px;
+    height: 220px;
     overflow: hidden;
-    background: #000;
+    position: relative;
 }
 
 .post-preview-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .blog-post:hover .post-preview-image {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 .post-content-inside {
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -151,43 +189,68 @@ main {
     text-transform: uppercase;
     font-weight: 700;
     color: var(--accent);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.blog-post h3 {
     margin-bottom: 8px;
+    line-height: 1.3;
 }
 
 .blog-post h3 a {
     color: var(--primary);
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.blog-post h3 a:hover {
+    color: var(--accent);
 }
 
 .post-meta {
     font-size: 0.8rem;
     color: var(--meta);
-    margin: 6px 0 12px 0;
+    margin-bottom: 14px;
 }
 
 .blog-post p {
-    font-size: 0.9rem;
-    margin-bottom: 16px;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 20px;
     flex-grow: 1;
 }
 
+/* Κουμπί "Read Entry" τύπου Pill */
 .read-more {
-    color: var(--accent);
+    align-self: flex-start;
+    background: var(--bg);
+    color: var(--primary);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid var(--border);
 }
 
-/* Responsive YouTube Video Embeds */
+.read-more:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+/* Responsive YouTube Embeds */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    margin: 20px 0;
-    border-radius: 8px;
+    margin: 24px 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
 .video-container iframe {
@@ -199,24 +262,41 @@ main {
     border: 0;
 }
 
+/* Sidebar */
 .sidebar {
     background: var(--card-bg);
-    padding: 24px;
-    border-radius: 12px;
+    padding: 32px;
+    border-radius: var(--radius);
     border: 1px solid var(--border);
+    box-shadow: var(--shadow);
     height: fit-content;
 }
 
-.sidebar h3 { margin-bottom: 12px; font-size: 1.1rem; }
-.sidebar p { font-size: 0.9rem; margin-bottom: 20px; }
+.sidebar h3 {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.sidebar p {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
 .sidebar ul { list-style: none; }
-.sidebar ul li { padding: 8px 0; border-bottom: 1px solid var(--border); }
-.sidebar ul li a { text-decoration: none; color: var(--text); font-size: 0.9rem; }
+.sidebar ul li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.sidebar ul li:last-child { border-bottom: none; }
+.sidebar ul li a { text-decoration: none; color: var(--text); font-size: 0.95rem; font-weight: 500; }
+.sidebar ul li a:hover { color: var(--accent); }
 
 footer {
     text-align: center;
-    padding: 30px;
+    padding: 40px;
     border-top: 1px solid var(--border);
     background: var(--card-bg);
-    margin-top: 40px;
+    margin-top: 80px;
+    font-size: 0.9rem;
+    color: var(--meta);
 }
