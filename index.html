@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IoannisIn | Personal Blog</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Έλεγχος αν ο χρήστης είχε επιλέξει Dark Mode στο παρελθόν
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -15,6 +23,9 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
+                    <li>
+                        <button id="theme-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 0 5px;"></button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -53,5 +64,24 @@
             <p>&copy; 2026 IoannisIn. Built with Jekyll.</p>
         </div>
     </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        
+        // Ορισμός κατάλληλου emoji στο κουμπί κατά το φόρτωμα
+        toggleBtn.innerHTML = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+
+        toggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerHTML = '🌙';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerHTML = '☀️';
+            }
+        });
+    </script>
 </body>
 </html>
