@@ -1,18 +1,33 @@
 /* Εισαγωγή Μοντέρνας Γραμματοσειράς */
 @import url('https://googleapis.com');
 
+/* Αρχικά Χρώματα (Light Mode) */
 :root {
-    --primary: #0f172a; /* Σκούρο Slate */
-    --accent: #2563eb;  /* Έντονο Μπλε */
-    --bg: #f8fafc;      /* Απαλό Γκρι Φόντο */
-    --card-bg: #ffffff; /* Λευκό για τις κάρτες */
-    --text: #334155;    /* Γκρι-Μαύρο για ξεκούραστο διάβασμα */
+    --primary: #0f172a; 
+    --accent: #2563eb;  
+    --bg: #f8fafc;      
+    --card-bg: #ffffff; 
+    --text: #334155;    
+    --border: #e2e8f0;
+    --meta: #94a3b8;
+}
+
+/* Χρώματα για το Dark Mode */
+html.dark {
+    --primary: #f8fafc; 
+    --accent: #60a5fa;  
+    --bg: #0f172a;      
+    --card-bg: #1e293b; 
+    --text: #cbd5e1;    
+    --border: #334155;
+    --meta: #64748b;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
@@ -31,7 +46,7 @@ body {
 /* Header & Navigation */
 header {
     background: var(--card-bg);
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
     padding: 20px 0;
     position: sticky;
     top: 0;
@@ -55,6 +70,7 @@ nav ul {
     display: flex;
     list-style: none;
     gap: 24px;
+    align-items: center;
 }
 
 nav a {
@@ -62,7 +78,6 @@ nav a {
     color: var(--text);
     font-weight: 500;
     font-size: 0.95rem;
-    transition: color 0.2s;
 }
 
 nav a:hover {
@@ -96,13 +111,12 @@ main {
     background: var(--card-bg);
     padding: 32px;
     border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.02);
+    border: 1px solid var(--border);
     margin-bottom: 24px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .blog-post:hover {
-    transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
 }
 
@@ -111,7 +125,6 @@ main {
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 600;
-    transition: color 0.2s;
 }
 
 .blog-post h3 a:hover {
@@ -120,7 +133,7 @@ main {
 
 .post-meta {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: var(--meta);
     margin: 8px 0 16px 0;
     font-weight: 500;
 }
@@ -148,7 +161,7 @@ main {
     padding: 32px;
     border-radius: 12px;
     height: fit-content;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
 }
 
 .sidebar h3 {
@@ -161,7 +174,7 @@ main {
 .sidebar p {
     font-size: 0.95rem;
     margin-bottom: 24px;
-    color: #64748b;
+    color: var(--meta);
 }
 
 .sidebar ul {
@@ -176,7 +189,6 @@ main {
     text-decoration: none;
     color: var(--text);
     font-size: 0.95rem;
-    transition: color 0.2s;
 }
 
 .sidebar ul li a:hover {
@@ -187,8 +199,8 @@ main {
 footer {
     text-align: center;
     padding: 40px 0;
-    color: #94a3b8;
+    color: var(--meta);
     font-size: 0.9rem;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border);
     background: var(--card-bg);
 }
