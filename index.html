@@ -9,12 +9,12 @@
 <body>
     <header>
         <div class="container">
-            <h1>Welcome to My Blogspot</h1>
+            <h1>IoannisIn</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,20 +22,18 @@
 
     <main class="container">
         <section class="main-content">
-            <h2>Latest Blog Posts</h2>
+            <h2>Latest Stories</h2>
             
-            <!-- Εδώ εμφανίζονται αυτόματα τα άρθρα σου -->
             {% for post in site.posts %}
-            <article class="blog-post" style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                <h3><a href="{{ post.url | relative_url }}" style="color: #003366; text-decoration: none;">{{ post.title }}</a></h3>
-                <p class="post-meta" style="color: #777; font-size: 0.9em;">Posted on {{ post.date | date: "%B %d, %Y" }} by Ioannis</p>
-                <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-                <a href="{{ post.url | relative_url }}" class="read-more" style="color: #003366; font-weight: bold; text-decoration: none;">Read More →</a>
+            <article class="blog-post">
+                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                <div class="post-meta">Published on {{ post.date | date: "%B %d, %Y" }}</div>
+                <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+                <a href="{{ post.url | relative_url }}" class="read-more">Read Entry →</a>
             </article>
             {% else %}
-            <p>Δεν υπάρχουν ακόμα άρθρα. Ξεκινήστε γράφοντας το πρώτο σας post στον φάκελο _posts!</p>
+            <p>Δεν υπάρχουν ακόμα άρθρα στον φάκελο _posts.</p>
             {% endfor %}
-
         </section>
 
         <aside class="sidebar">
@@ -52,7 +50,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 IoannisIn. All rights reserved.</p>
+            <p>&copy; 2026 IoannisIn. Built with Jekyll.</p>
         </div>
     </footer>
 </body>
