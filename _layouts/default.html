@@ -1,66 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | IoannisIn</title>
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
-    <script>
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" media="print" onload="this.media='all'">
+
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{% if page.layout == 'post' %}TechArticle{% else %}WebSite{% endif %}",
+    "headline": "{{ page.title | default: site.title }}",
+    "url": "{{ page.url | absolute_url }}",
+    "author": {
+      "@type": "Person",
+      "name": "Ioannis IGI"
+    }
+  }
+  </script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1><a href="{{ '/' | relative_url }}" style="color: var(--primary); text-decoration: none;">IoannisIn</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="{{ '/' | relative_url }}">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><button id="theme-toggle" aria-label="Toggle Dark Mode"></button></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main class="container" style="grid-template-columns: 1fr; max-width: 800px;">
-        <article class="blog-post" style="box-shadow: none; border: none; background: transparent; padding: 0;">
-            <span class="category-badge">{{ page.category }}</span>
-            <h2 style="font-size: 2.2rem; margin-bottom: 8px;">{{ page.title }}</h2>
-            <div class="post-meta" style="margin-bottom: 24px;">Published on {{ page.date | date: "%B %d, %Y" }}</div>
-            
-            <div class="post-entry-content" style="font-size: 1.1rem; color: var(--text);">
-                {{ content }}
-            </div>
-        </article>
+  <header class="header-nav">
+    <div class="logo"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></div>
+    <button class="menu-toggle" id="menu-btn" aria-label="Toggle Navigation Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a href="{{ '/about.html' | relative_url }}">About</a></li>
+      <li><a href="{{ '/projects.html' | relative_url }}">Projects</a></li>
+      <li><a href="{{ '/archive.html' | relative_url }}">Archive</a></li>
+    </ul>
+  </header>
+
+  <div class="container">
+    <main>
+      {{ content }}
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 IoannisIn. Built with Jekyll.</p>
+    <aside>
+      <div class="widget">
+        <h3>Ioannis IGI</h3>
+        <p style="font-size: 0.9rem; color: #555;">Systems Architect & Academic Supervisor.</p>
+        <div class="social-grid">
+          <a href="https://github.com/IoannisIn" target="_blank" rel="noopener" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="ORCID Author Identifier"><i class="ai ai-orcid"></i></a>
+          <a href="mailto:your-email@example.com" aria-label="Direct Email"><i class="fas fa-envelope"></i></a>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        toggleBtn.innerHTML = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
-        toggleBtn.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                toggleBtn.innerHTML = '🌙';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                toggleBtn.innerHTML = '☀️';
-            }
-        });
-    </script>
+      <div class="widget">
+        <h3>Search Posts</h3>
+        <input type="text" id="sidebar-search" class="search-input" placeholder="Type to search live..." aria-label="Search posts">
+        <div id="search-dropdown" style="margin-top:0.5rem; max-height:300px; overflow-y:auto;"></div>
+      </div>
+
+      <div class="widget">
+        <h3>Chronological Archive</h3>
+        <ul class="archive-list" id="sidebar-archive">
+          </ul>
+      </div>
+    </aside>
+  </div>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
