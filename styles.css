@@ -1,116 +1,37 @@
-/* --- Tech & Engineering Theme Colors --- */
 :root {
-  --bg-main: #f9fafb;
-  --bg-card: #ffffff;
-  --text-primary: #1e293b;
-  --text-muted: #64748b;
-  --brand-color: #0ea5e9;    /* Drone Sky/Tech Blue */
-  --brand-dark: #0369a1;
-  --code-bg: #0f172a;        /* Slate 900 για τον κώδικα */
+  --primary: #007acc;
+  --dark: #0f172a;
+  --bg: #f8fafc;
+  --text: #1e293b;
   --border: #e2e8f0;
-  --font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-primary);
-  line-height: 1.6;
+body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+
+.tech-nav { background: var(--dark); color: white; padding: 1rem 0; }
+.nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.brand-logo { text-decoration: none; color: white; font-weight: bold; font-family: monospace; }
+.brand-logo span { color: var(--primary); }
+
+.grid-container {
+  max-width: 1100px; margin: 2rem auto; display: grid; 
+  grid-template-columns: 1fr; gap: 2rem; padding: 0 20px;
 }
 
-/* --- Navigation --- */
-.navbar {
-  background: #0f172a; /* Σκούρο, premium header */
-  color: #ffffff;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.navbar .brand a {
-  font-family: var(--font-code);
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 700;
-}
-.navbar .brand span { color: var(--brand-color); }
-.nav-links { display: flex; list-style: none; gap: 1.5rem; }
-.nav-links a { color: #94a3b8; text-decoration: none; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: #ffffff; }
-.menu-btn { display: none; background: none; border: none; color: #ffffff; font-size: 1.3rem; cursor: pointer; }
-
-/* --- Grid Layout --- */
-.main-container {
-  max-width: 1240px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-@media (min-width: 992px) {
-  .main-container { grid-template-columns: 2.5fr 1fr; }
+@media (min-width: 850px) {
+  .grid-container { grid-template-columns: 2.5fr 1fr; }
 }
 
-/* --- Content & Technical Elements --- */
-main, .widget-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.8rem;
-}
-.sidebar-wrapper { display: flex; flex-direction: column; gap: 1.5rem; }
+main, .widget { background: white; padding: 2rem; border-radius: 8px; border: 1px solid var(--border); }
 
-.widget-box h3 {
-  font-family: var(--font-code);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 0.3rem;
-}
+/* Code Blocks Styling */
+pre { background: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 5px; overflow-x: auto; font-family: monospace; }
 
-/* Dynamic Post Items on Main Feed */
-.post-card { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
-.post-card h2 a { color: var(--text-primary); text-decoration: none; transition: color 0.2s; }
-.post-card h2 a:hover { color: var(--brand-color); }
-.post-meta { font-size: 0.8rem; color: var(--text-muted); margin: 0.4rem 0 0.8rem 0; display: flex; gap: 1rem; }
-.tag-badge { background: #f1f5f9; color: var(--text-muted); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.75rem; font-family: var(--font-code); }
+.sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+.widget h3 { font-size: 0.8rem; text-transform: uppercase; color: #64748b; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); display: inline-block; }
 
-/* Elements: Search Input & Social Links */
-.search-bar-input {
-  width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; background: var(--bg-main);
-}
-.search-bar-input:focus { outline: 1px solid var(--brand-color); background: #fff; }
+.social-icons { display: flex; gap: 15px; font-size: 1.5rem; margin-top: 10px; }
+.social-icons a { color: var(--text); transition: 0.3s; }
+.social-icons a:hover { color: var(--primary); }
 
-.social-flex { display: flex; gap: 0.8rem; font-size: 1.25rem; flex-wrap: wrap; margin-top: 0.5rem; }
-.social-flex a { color: var(--text-muted); transition: color 0.2s; text-decoration: none; }
-.social-flex a:hover { color: var(--brand-color); }
-
-.archive-ui { list-style: none; }
-.archive-ui li { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; }
-.archive-ui a { color: var(--brand-dark); text-decoration: none; font-weight: 500; }
-.archive-ui a:hover { text-decoration: underline; }
-
-/* Responsive Code Blocks */
-pre {
-  background: var(--code-bg); color: #f8f8f2; padding: 1.2rem; border-radius: 6px;
-  overflow-x: auto; white-space: pre; word-wrap: normal; margin: 1.2rem 0; font-family: var(--font-code); font-size: 0.85rem;
-  border-left: 4px solid var(--brand-color);
-}
-img { max-width: 100%; height: auto; display: block; border-radius: 6px; margin: 1rem 0; }
-
-@media (max-width: 768px) {
-  .menu-btn { display: block; }
-  .nav-links {
-    display: none; flex-direction: column; width: 100%; position: absolute;
-    top: 100%; left: 0; background: #0f172a; padding: 1.5rem; border-top: 1px solid #1e293b;
-  }
-  .nav-links.active { display: flex; }
-}
+#live-search { width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px; }
