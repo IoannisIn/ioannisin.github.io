@@ -3,14 +3,14 @@ layout: default
 title: "Γέφυρα Χαλκίδας by night (4K Drone Flight)"
 date: 2026-06-04
 category: "Drone Flights"
-image: "https://youtube.com"
+image: "https://youtube.com/zWPJUuQ8USk"
 ---
 
 Μια νυχτερινή πτήση πάνω από τη Γέφυρα της Χαλκίδας, καταγράφοντας τα φώτα και την ομορφιά της πόλης από ψηλά σε ανάλυση 4K.
 
 ### Δείτε το βίντεο:
 <div class="video-container">
-  <iframe src="https://youtube.com" allowfullscreen></iframe>
+  <iframe src="https://youtube.com/zWPJUuQ8USk" allowfullscreen></iframe>
 </div>
 
 ### Πληροφορίες βίντεο:
