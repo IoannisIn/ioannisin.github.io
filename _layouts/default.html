@@ -9,70 +9,74 @@
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   
+  <!-- UI Icons Layer -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" media="print" onload="this.media='all'">
 
-  <meta property="og:site_name" content="{{ site.title }}">
+  <!-- SEO Graph Matrix -->
   <meta property="og:title" content="{{ page.title | default: site.title }}">
-  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-  
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "{% if page.layout == 'post' %}TechArticle{% else %}WebSite{% endif %}",
-    "headline": "{{ page.title | default: site.title }}",
-    "url": "{{ page.url | absolute_url }}",
-    "author": {
-      "@type": "Person",
-      "name": "Ioannis IGI"
-    }
+    "@type": "WebSite",
+    "headline": "{{ site.title }}",
+    "url": "{{ site.url }}"
   }
   </script>
 </head>
 <body>
 
-  <header class="header-nav">
-    <div class="logo"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></div>
-    <button class="menu-toggle" id="menu-btn" aria-label="Toggle Navigation Menu">
+  <nav class="navbar">
+    <div class="logo"><a href="{{ '/' | relative_url }}">&gt;_ ioannis_igi</a></div>
+    <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle Menu">
       <i class="fas fa-bars"></i>
     </button>
-    <ul class="nav-links" id="nav-menu">
+    <ul class="nav-links" id="navbar-menu">
       <li><a href="{{ '/' | relative_url }}">Home</a></li>
       <li><a href="{{ '/about.html' | relative_url }}">About</a></li>
       <li><a href="{{ '/projects.html' | relative_url }}">Projects</a></li>
       <li><a href="{{ '/archive.html' | relative_url }}">Archive</a></li>
     </ul>
-  </header>
+  </nav>
 
-  <div class="container">
+  <div class="main-wrapper">
+    <!-- Main Content Stream (Left Side) -->
     <main>
       {{ content }}
     </main>
 
-    <aside>
-      <div class="widget">
-        <h3>Ioannis IGI</h3>
-        <p style="font-size: 0.9rem; color: #555;">Systems Architect & Academic Supervisor.</p>
-        <div class="social-grid">
-          <a href="https://github.com/IoannisIn" target="_blank" rel="noopener" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="ORCID Author Identifier"><i class="ai ai-orcid"></i></a>
-          <a href="mailto:your-email@example.com" aria-label="Direct Email"><i class="fas fa-envelope"></i></a>
+    <!-- Refined Engineering Sidebar (Right Side) -->
+    <aside class="sidebar-layout">
+      <!-- Profile Info -->
+      <div class="sidebar-widget">
+        <h3>Author</h3>
+        <div style="font-weight: 700; font-size: 1.1rem;">Ioannis IGI</div>
+        <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Systems Architect & Academic Supervisor</div>
+        <div class="social-icons">
+          <a href="https://github.com/IoannisIn" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
+          <a href="mailto:your-email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
 
-      <div class="widget">
-        <h3>Search Posts</h3>
-        <input type="text" id="sidebar-search" class="search-input" placeholder="Type to search live..." aria-label="Search posts">
-        <div id="search-dropdown" style="margin-top:0.5rem; max-height:300px; overflow-y:auto;"></div>
+      <!-- Search Widget Execution -->
+      <div class="sidebar-widget">
+        <h3>Search Publications</h3>
+        <input type="text" id="tech-search" class="search-input" placeholder="Search keywords, logs, specs..." aria-label="Search posts">
+        <div id="search-output-box" style="margin-top: 1rem; max-height: 250px; overflow-y: auto;"></div>
       </div>
 
-      <div class="widget">
+      <!-- Archive Group Index -->
+      <div class="sidebar-widget">
         <h3>Chronological Archive</h3>
-        <ul class="archive-list" id="sidebar-archive">
-          </ul>
+        <ul class="archive-ul" id="dynamic-archive-list">
+          <!-- Populated instantly from posts.json -->
+        </ul>
       </div>
     </aside>
   </div>
