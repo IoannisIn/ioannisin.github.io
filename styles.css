@@ -300,3 +300,59 @@ footer {
     font-size: 0.9rem;
     color: var(--meta);
 }
+/* Στυλ για τα Social Media στο Sidebar */
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 1.2rem;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    color: #ffffff;
+}
+
+/* Χρώματα των Social κατά το Hover */
+.social-icon.youtube:hover { background-color: #ff0000; border-color: #ff0000; }
+.social-icon.instagram:hover { background-color: #e1306c; border-color: #e1306c; }
+.social-icon.tiktok:hover { background-color: #000000; border-color: #000000; }
+.social-icon.github:hover { background-color: #333333; border-color: #333333; }
+.social-icon.facebook:hover { background-color: #1877f2; border-color: #1877f2; }
+
+html.dark .social-icon.tiktok:hover { background-color: #ffffff; color: #000000; border-color: #ffffff; }
+
+/* Στυλ για τα Social Media στο Footer */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.footer-social a {
+    color: var(--meta);
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-social a:hover {
+    color: var(--accent);
+}
+
