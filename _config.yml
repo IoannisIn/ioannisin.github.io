@@ -1,8 +1,13 @@
-title: IoannisIn Blog
-description: Το προσωπικό μου blog στο GitHub Pages.
-url: "https://github.io"
+title: Ioannis IGI
+description: Systems Architect & Academic Supervisor Portfolio Blog
+url: "https://ioannisin.github.io"
 baseurl: ""
 
-# Ρυθμίσεις για τα άρθρα
-markdown: kramdown
-permalink: /:title/
+# Tech Optimizations
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Liquid Processor Settings
+sass:
+  style: compressed
