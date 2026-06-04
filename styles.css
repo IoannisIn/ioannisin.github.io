@@ -1,31 +1,27 @@
-/* Εισαγωγή Μοντέρνας Γραμματοσειράς Inter */
 @import url('https://googleapis.com');
 
-/* Αρχικά Χρώματα (Light Mode) */
 :root {
-    --bg: #f8fafc;         /* Απαλό γκρι φόντο */
-    --card-bg: #ffffff;    /* Καθαρό λευκό για τις κάρτες */
-    --primary: #0f172a;    /* Σκούρο slate για τους τίτλους */
-    --text: #334155;       /* Ξεκούραστο γκρι-μαύρο για το κείμενο */
-    --accent: #2563eb;     /* Μοντέρνο Royal Μπλε για τα links */
-    --border: #e2e8f0;     /* Διακριτικές γραμμές */
-    --meta: #64748b;       /* Χρώμα για ημερομηνίες */
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --bg: #f8fafc;         
+    --card-bg: #ffffff;    
+    --primary: #0f172a;    
+    --text: #334155;       
+    --accent: #0284c7;     /* Sky blue για tech ύφος */
+    --border: #e2e8f0;     
+    --meta: #64748b;       
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
 }
 
-/* Χρώματα για το Dark Mode */
 html.dark {
-    --bg: #0b0f19;         /* Πολύ σκούρο navy/μαύρο φόντο */
-    --card-bg: #151f32;    /* Σκούρο μπλε/γκρι για τις κάρτες */
-    --primary: #f8fafc;    /* Λευκό για τους τίτλους */
-    --text: #94a3b8;       /* Απαλό γκρι για το κείμενο */
-    --accent: #3b82f6;     /* Φωτεινό μπλε για τα links */
-    --border: #223147;     /* Σκούρες διακριτικές γραμμές */
+    --bg: #0f172a;         
+    --card-bg: #1e293b;    
+    --primary: #f8fafc;    
+    --text: #cbd5e1;    
+    --accent: #38bdf8;     
+    --border: #334155;     
     --meta: #64748b;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
 }
 
-/* Βασικό Reset */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -38,16 +34,14 @@ body {
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 1050px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Header & Μενού */
 header {
     background: var(--card-bg);
     border-bottom: 1px solid var(--border);
@@ -64,7 +58,7 @@ header .container {
 }
 
 header h1 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--primary);
     letter-spacing: -0.5px;
@@ -81,161 +75,148 @@ nav a {
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
-    font-size: 0.95rem;
 }
 
 nav a:hover {
     color: var(--accent);
 }
 
-/* Διάταξη Δύο Στηλών (Main & Sidebar) */
+#theme-toggle {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
 main {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
     gap: 32px;
     margin: 40px auto;
 }
 
-/* Responsive για Κινητά */
-@media (max-width: 768px) {
-    main {
-        grid-template-columns: 1fr;
-        margin: 24px auto;
-    }
+@media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
 }
 
-.main-content h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 20px;
-    letter-spacing: -0.5px;
+/* Πλέγμα Άρθρων */
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
 }
 
-/* Κάρτες Άρθρων (Blog Posts) */
+@media (max-width: 640px) {
+    .blog-grid { grid-template-columns: 1fr; }
+}
+
 .blog-post {
     background: var(--card-bg);
-    padding: 28px;
     border-radius: 12px;
     border: 1px solid var(--border);
-    margin-bottom: 20px;
     box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-.blog-post:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08);
+.post-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #000;
 }
 
-.blog-post h3 {
-    margin-bottom: 6px;
+.post-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.blog-post:hover .post-preview-image {
+    transform: scale(1.05);
+}
+
+.post-content-inside {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.category-badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
 }
 
 .blog-post h3 a {
     color: var(--primary);
     text-decoration: none;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    letter-spacing: -0.3px;
-}
-
-.blog-post h3 a:hover {
-    color: var(--accent);
 }
 
 .post-meta {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--meta);
-    margin-bottom: 12px;
-    font-weight: 500;
+    margin: 6px 0 12px 0;
 }
 
 .blog-post p {
-    font-size: 0.95rem;
-    color: var(--text);
+    font-size: 0.9rem;
     margin-bottom: 16px;
+    flex-grow: 1;
 }
 
 .read-more {
-    display: inline-block;
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
-.read-more:hover {
-    text-decoration: underline;
+/* Responsive YouTube Video Embeds */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin: 20px 0;
+    border-radius: 8px;
 }
 
-/* Sidebar */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 .sidebar {
     background: var(--card-bg);
     padding: 24px;
     border-radius: 12px;
-    height: fit-content;
     border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    height: fit-content;
 }
 
-.sidebar h3 {
-    font-size: 1.05rem;
-    color: var(--primary);
-    margin-bottom: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+.sidebar h3 { margin-bottom: 12px; font-size: 1.1rem; }
+.sidebar p { font-size: 0.9rem; margin-bottom: 20px; }
+.sidebar ul { list-style: none; }
+.sidebar ul li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.sidebar ul li a { text-decoration: none; color: var(--text); font-size: 0.9rem; }
 
-.sidebar p {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    color: var(--text);
-}
-
-.sidebar ul {
-    list-style: none;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
-}
-
-.sidebar ul li:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: var(--text);
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.sidebar ul li a:hover {
-    color: var(--accent);
-}
-
-/* Footer */
 footer {
     text-align: center;
-    padding: 32px 0;
-    color: var(--meta);
-    font-size: 0.85rem;
+    padding: 30px;
     border-top: 1px solid var(--border);
     background: var(--card-bg);
-    margin-top: 64px;
-}
-
-/* Στυλ για το Κουμπί Dark Mode */
-#theme-toggle {
-    background: var(--bg) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 8px;
-    padding: 6px 10px !important;
-    font-size: 1rem !important;
-    box-shadow: var(--shadow);
+    margin-top: 40px;
 }
