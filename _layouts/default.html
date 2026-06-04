@@ -3,61 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} | Ioannis IGI</title>
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
   
-  <!-- CSS με Cache Buster για να βλέπεις τις αλλαγές αμέσως -->
   <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=' | append: site.time | relative_url }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
   
-  <!-- UI Icons (GitHub, Scholar, κλπ) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" media="print" onload="this.media='all'">
 </head>
 <body>
 
-  <header class="tech-nav">
+  <nav class="navbar">
     <div class="nav-container">
-      <a href="/" class="brand-logo">IOANNIS<span>.IGI</span></a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/archive">Archive</a></li>
+      <div class="logo"><a href="{{ '/' | relative_url }}">&gt;_ ioannis<span>.igi</span></a></div>
+      <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        <li><a href="{{ '/about.html' | relative_url }}">About</a></li>
+        <li><a href="{{ '/projects.html' | relative_url }}">Projects</a></li>
+        <li><a href="{{ '/archive.html' | relative_url }}">Archive</a></li>
       </ul>
     </div>
-  </header>
+  </nav>
 
-  <div class="grid-container">
-    <main class="content-area">
+  <div class="main-wrapper">
+    <main class="content-panel">
       {{ content }}
     </main>
 
-    <aside class="sidebar">
-      <div class="widget profile-card">
+    <aside class="sidebar-panel">
+      <div class="widget">
         <h3>Identity</h3>
-        <p><strong>Ioannis IGI</strong></p>
-        <p>Systems Architect & Academic Supervisor</p>
-        <div class="social-icons">
-          <a href="https://github.com/IoannisIn"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="ai ai-google-scholar"></i></a>
-          <a href="#"><i class="fas fa-envelope"></i></a>
+        <div class="profile-meta">
+          <span class="profile-name">Ioannis IGI</span>
+          <span class="profile-title">Systems Architect & Academic Supervisor</span>
+        </div>
+        <div class="social-grid">
+          <a href="https://github.com/IoannisIn" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
+          <a href="mailto:your-email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
 
-      <div class="widget search-box">
+      <div class="widget">
         <h3>Search Logs</h3>
-        <input type="text" id="live-search" placeholder="Search tech specs...">
-        <div id="results-container"></div>
+        <input type="text" id="search-input" class="search-field" placeholder="Search keywords, code, specs..." aria-label="Search posts">
+        <div id="search-results" class="search-results-box"></div>
       </div>
 
-      <div class="widget archive-box">
-        <h3>Archives</h3>
-        <ul id="dynamic-archive">
-          <!-- Αυτό γεμίζει αυτόματα με JS -->
-        </ul>
+      <div class="widget">
+        <h3>Archive</h3>
+        <ul class="archive-list" id="sidebar-archive">
+          </ul>
       </div>
     </aside>
   </div>
 
-  <script src="/assets/js/main.js"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
