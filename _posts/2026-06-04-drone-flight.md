@@ -10,7 +10,7 @@ image: "https://youtube.com"
 
 ### Δείτε το βίντεο εδώ:
 <div class="video-container">
-  <iframe src="https://youtube.com/wvWJabBqrj0?si=9fNjOVx4DMplhAy7" allowfullscreen></iframe>
+  <iframe src="[https://youtube.com/wvWJabBqrj0?si=9fNjOVx4DMplhAy7](https://youtu.be/zWPJUuQ8USk?si=gNXe37Efvq7nkx77)" allowfullscreen></iframe>
 </div>
 
 ### Εξοπλισμός που χρησιμοποιήθηκε:
