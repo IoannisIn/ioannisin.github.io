@@ -10,7 +10,7 @@ image: "https://youtube.com/zWPJUuQ8USk"
 
 ### Δείτε το βίντεο:
 <div class="video-container">
-  <iframe src="https://youtube.com/zWPJUuQ8USk" allowfullscreen></iframe>
+  <iframe src="https://youtube.com/embed/zWPJUuQ8USk" allowfullscreen></iframe>
 </div>
 
 ### Πληροφορίες βίντεο:
